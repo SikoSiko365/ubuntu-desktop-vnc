@@ -35,18 +35,4 @@ jobs:
 
     - name: Run noVNC server
       run: |
-        nohup ~/noVNC/utils/launch.sh --vnc localhost:5901 --listen 6080 &
-
-    - name: Create tunnel with serveo.net
-      run: |
-        nohup ssh -o StrictHostKeyChecking=no -R 80:localhost:6080 serveo.net &
-        sleep 10
-        echo "🚀 Tunnel should be up! Check logs below for the public URL."
-        ps aux | grep ssh
-
-    - name: Show connection info
-      run: |
-        echo "-------------------------------------------"
-        echo "🔑 VNC password: 123456"
-        echo "🌐 Open the public URL from the previous step in your browser"
-        echo "-------------------------------------------"
+        nohup python3 ~/noVNC/utils/websockify/
